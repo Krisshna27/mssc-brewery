@@ -1,4 +1,4 @@
-package selfstudy.springframework.msscbrewery.web.model;
+package selfstudy.springframework.msscbrewery.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,14 +10,12 @@ import javax.validation.constraints.Size;
 import java.util.UUID;
 
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+@Builder
+public class Customer {
 
     private UUID id;
 
-    @NotNull
-    @Size(min = 3, max = 100)
     private String name;
 }

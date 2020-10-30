@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.*;
 import selfstudy.springframework.msscbrewery.services.CustomerService;
 import selfstudy.springframework.msscbrewery.web.model.CustomerDTO;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -25,7 +29,7 @@ public class CustomerController {
     }
 
     @PostMapping
-    public ResponseEntity handlePost(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity handlePost(@Valid @RequestBody CustomerDTO customerDTO) {
         CustomerDTO savedCustomer = customerService.createCustomer(customerDTO);
 
         HttpHeaders headers = new HttpHeaders();
@@ -36,7 +40,7 @@ public class CustomerController {
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void handleUpdate(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDTO customerDTO) {
+    public void handleUpdate(@PathVariable("customerId") UUID customerId,@Valid @RequestBody CustomerDTO customerDTO) {
         customerService.updateCustomer(customerId, customerDTO);
     }
 
@@ -45,4 +49,5 @@ public class CustomerController {
     public void deleteById(@PathVariable("customerId") UUID customerId) {
         customerService.deleteCustomer(customerId);
     }
+
 }

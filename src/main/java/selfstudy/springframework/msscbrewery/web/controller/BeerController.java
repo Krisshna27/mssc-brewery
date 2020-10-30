@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import selfstudy.springframework.msscbrewery.services.BeerService;
 import selfstudy.springframework.msscbrewery.web.model.BeerDTO;
 
+import javax.validation.Valid;
 import java.util.UUID;
 
 @Deprecated
@@ -26,7 +27,7 @@ public class BeerController {
     }
 
     @PostMapping // Create new beer
-    public ResponseEntity handlePost(@RequestBody BeerDTO beerDTO) {
+    public ResponseEntity handlePost(@Valid @RequestBody BeerDTO beerDTO) {
         BeerDTO savedDTO = beerService.saveNewBeer(beerDTO);
 
         HttpHeaders headers = new HttpHeaders();
@@ -37,7 +38,7 @@ public class BeerController {
     }
 
     @PutMapping({"/{beerId}"})
-    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @RequestBody BeerDTO beerDTO) {
+    public ResponseEntity handleUpdate(@PathVariable("beerId") UUID beerId, @Valid @RequestBody BeerDTO beerDTO) {
 
         beerService.updateBeer(beerId, beerDTO);
 

@@ -1,33 +1,32 @@
-package selfstudy.springframework.msscbrewery.web.model;
+package selfstudy.springframework.msscbrewery.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import selfstudy.springframework.msscbrewery.web.model.v2.BeerStyleEnum;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
-import java.time.OffsetDateTime;
+import java.sql.Timestamp;
 import java.util.UUID;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BeerDTO {
-    @Null
+public class Beer {
+
     private UUID id;
 
-    @NotBlank
     private String beerName;
 
-    private String beerStyle;
+    private BeerStyleEnum beerStyle;
 
-    @Positive
     private Long upc;
 
-    private OffsetDateTime createdDate;
+    private Timestamp createdDate;
 
-    private OffsetDateTime lastUpdatedDate;
+    private Timestamp lastUpdatedDate;
 }
